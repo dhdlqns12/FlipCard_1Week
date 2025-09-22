@@ -1,4 +1,4 @@
 # Flip-Card-NBC_1W-
 내일 배움 캠프(9/22~9/26) 1주차 프로젝트
-Console.Write("\n")
+<br />
 1주차 카드 뒤집기
