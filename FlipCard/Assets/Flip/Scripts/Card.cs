@@ -32,7 +32,7 @@ public class Card : MonoBehaviour
     //카드 열었을떄
     public void OpenCard()
     {
-        anim.SetBool("isopen", true);
+        anim.SetBool("isOpen", true);
         front.SetActive(true);
         back.SetActive(false);
 
