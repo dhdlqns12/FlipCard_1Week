@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Board_1 : MonoBehaviour
@@ -9,6 +10,9 @@ public class Board_1 : MonoBehaviour
 
     void Start()
     {
+        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
+        arr = arr.OrderBy(x => Random.Range(0f, 4f)).ToArray();
+
         for (int i = 0; i < 10; i++)
         {
             int row = i / 5;
@@ -22,5 +26,6 @@ public class Board_1 : MonoBehaviour
             card.transform.localPosition = pos;
             card.name = $"Card_{i}";
         }
+        GameManager.Instance.cardCount = arr.Length;
     }
 }

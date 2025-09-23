@@ -5,13 +5,14 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     public int idx = 0;
-    public Animator anim;
     public GameObject front;
     public GameObject back;
-    //Á¤¼ö º¯¼ö»óÀÚ·Î º¯È¯
+    public Animator anim;
+
+    //ì •ìˆ˜ ë³€ìˆ˜ìƒìë¡œ ë³€í™˜
     // Start is called before the first frame update
     public SpriteRenderer frontImages;
-    //½ºÇÁ¶óÀÌÆ®·»´õ·¯ ÇÁ·ĞÆ® º¯¼ö Ãß°¡ 
+    //ìŠ¤í”„ë¼ì´íŠ¸ë Œë”ëŸ¬ í”„ë¡ íŠ¸ ë³€ìˆ˜ ì¶”ê°€ 
     void Start()
     {
 
@@ -22,14 +23,14 @@ public class Card : MonoBehaviour
     {
 
     }
-    //Ä«µå ¹øÈ£, ÀÌ¹ÌÁö
+    //ì¹´ë“œ ë²ˆí˜¸, ì´ë¯¸ì§€
     public void Setting(int number)
     {
-        idx = number;//idx ¼ıÀÚ
+        idx = number;//idx ìˆ«ì
         frontImages.sprite = Resources.Load<Sprite>($"Images/{idx}");
-        //frontsprite¿¡ resources ¿¡¼­ Images¸¦ load
+        //frontspriteì— resources ì—ì„œ Imagesë¥¼ load
     }
-    //Ä«µå ¿­¾úÀ»‹š
+    //ì¹´ë“œ ì—´ì—ˆì„ë–„
     public void OpenCard()
     {
         anim.SetBool("isOpen", true);
@@ -37,22 +38,22 @@ public class Card : MonoBehaviour
         back.SetActive(false);
 
 
-        //firstcard°¡ ºó »óÈ²      null==ºó »óÅÂ
+        //firstcardê°€ ë¹ˆ ìƒí™©      null==ë¹ˆ ìƒíƒœ
         if (GameManager.Instance.firstCard == null)
         {
-            // firstCard¿¡ Á¤º¸¸¦ ³Ñ°ÜÁÜ
+            // firstCardì— ì •ë³´ë¥¼ ë„˜ê²¨ì¤Œ
             GameManager.Instance.firstCard = this;
         }
 
         else
         {
-            //secondCard¿¡ Á¤º¸¸¦ ³Ñ°ÜÁÜ
+            //secondCardì— ì •ë³´ë¥¼ ë„˜ê²¨ì¤Œ
             GameManager.Instance.secondCard = this;
-            // Mached ÇÔ¼ö¸¦ È£Ãâ
+            // Mached í•¨ìˆ˜ë¥¼ í˜¸ì¶œ
             GameManager.Instance.Matched();
         }
     }
-    //Å°µå Á¦°Å »óÈ²
+    //í‚¤ë“œ ì œê±° ìƒí™©
     public void DestroyCard()
     {
         Invoke("DestroyCardInvoke", 1.0f);
@@ -67,11 +68,11 @@ public class Card : MonoBehaviour
     {
         Invoke("CloseCardInvoke", 1.0f);
     }
+
     void CloseCardInvoke()
     {
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
     }
-
 }
