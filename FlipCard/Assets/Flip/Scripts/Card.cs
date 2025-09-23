@@ -9,7 +9,6 @@ public class Card : MonoBehaviour
     public GameObject front;
     public GameObject back;
     public Animator anim;
-    public Camera camera;
 
     //정수 변수상자로 변환
     // Start is called before the first frame update
@@ -35,7 +34,7 @@ public class Card : MonoBehaviour
     //카드 열었을떄
     public void OpenCard()
     {
-        anim.SetBool("isopen", true);
+        anim.SetBool("isOpen", true);
         front.SetActive(true);
         back.SetActive(false);
 
