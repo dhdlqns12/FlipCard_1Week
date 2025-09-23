@@ -7,12 +7,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public Text timeTxt; //시간 표기
     public GameObject end; //끝을 알리는 화면
 
     public Card firstCard; //첫번째로 뒤집은 카드
     public Card secondCard; //두번째로 뒤집은 카드
 
+    public Text timeTxt; //시간 표기
+    public Text scoreTxt; //스코어 표기
+    public Text bestScoreTxt; //베스트 스코어 표기
+
+    public int score = 0; //스코어 담을 변수
+    public int bestScore = 0; //베스트 스코어 담을 변수
     int cardCount = 0; //남아 있는 카드를 카운트할 변수
 
     public float time;
@@ -24,7 +29,9 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        Time.timeScale = 1;
+        Time.timeScale = 1; // 정지 화면 초기화
+        score = 0; //현재 스코어 초기화
+        cardCount = 20; //카드 카운트 초기화
     }
 
     void Update() // 시간 증가
@@ -36,6 +43,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             end.SetActive(true);
         }
+        scoreTxt.text = score.ToString(); // 현재 스코어 표기
     }
 
     public void Matched()
@@ -45,12 +53,26 @@ public class GameManager : MonoBehaviour
             // 같으면 삭제
             firstCard.DestroyCard();
             secondCard.DestroyCard();
-            cardCount -= 2;
+            cardCount -= 2; //잔여 카드 개수 감소
+            score += 2; //스코어 증가
 
             if (cardCount == 0) // 남아 있는 카드가 0이면
             {
                 Time.timeScale = 0; //정지
-                end.SetActive(true);
+                end.SetActive(true); //end 화면 띄우기
+
+
+                if (score > bestScore)
+                {
+                    //현재 스코어가 베스트 스코어 보다 크면 베스트 스코어에 넣기
+                    int oldBestScore = bestScore;
+                    bestScore = score;
+                    bestScoreTxt.text = score.ToString();
+                }
+                else
+                {
+                    bestScoreTxt.text = bestScore.ToString(); //베스트 스코어를 베스트 스코어에 표기
+                }
             }
         }
         else
@@ -63,5 +85,4 @@ public class GameManager : MonoBehaviour
         firstCard = null;
         secondCard = null;
     }
-
 }
