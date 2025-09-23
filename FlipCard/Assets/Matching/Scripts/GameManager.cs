@@ -38,30 +38,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //public void Matched()
-    //{
-    //    if (firstCard.idx == secondCard.idx) //첫번째로 뒤집은 카드와 두번째로 뒤집은 카드의 인덱스 비교
-    //    {
-    //        // 같으면 삭제
-    //        firstCard.DestroyCard();
-    //        secondCard.DestroyCard();
-    //        cardCount -= 2;
+    public void Matched()
+    {
+        if (firstCard.idx == secondCard.idx) //첫번째로 뒤집은 카드와 두번째로 뒤집은 카드의 인덱스 비교
+        {
+            // 같으면 삭제
+            firstCard.DestroyCard();
+            secondCard.DestroyCard();
+            cardCount -= 2;
 
-    //        if (cardCount == 0) // 남아 있는 카드가 0이면
-    //        {
-    //            Time.timeScale = 0; //정지
-    //            end.SetActive(true);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        // 틀리면 뒤집기
-    //        firstCard.ClosedCard();
-    //        secondCard.ClosedCard();
-    //    }
-    //    //카드값 초기화
-    //    firstCard = null;
-    //    secondCard = null;
-    //}
+            if (cardCount == 0) // 남아 있는 카드가 0이면
+            {
+                Time.timeScale = 0; //정지
+                end.SetActive(true);
+            }
+        }
+        else
+        {
+            // 틀리면 뒤집기
+            firstCard.CloseCard();
+            secondCard.CloseCard();
+        }
+        //카드값 초기화
+        firstCard = null;
+        secondCard = null;
+    }
 
 }

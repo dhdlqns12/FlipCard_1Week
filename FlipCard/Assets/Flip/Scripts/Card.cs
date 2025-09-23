@@ -4,15 +4,74 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public int idx = 0;
+    public Animator anim;
     public GameObject front;
     public GameObject back;
-    public Animator animator;
-    public SpriteRenderer frontimage;
+    //Á¤¼ö º¯¼ö»óÀÚ·Î º¯È¯
+    // Start is called before the first frame update
+    public SpriteRenderer frontImages;
+    //½ºÇÁ¶óÀÌÆ®·»´õ·¯ ÇÁ·ÐÆ® º¯¼ö Ãß°¡ 
+    void Start()
+    {
 
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    //Ä«µå ¹øÈ£, ÀÌ¹ÌÁö
+    public void Setting(int number)
+    {
+        idx = number;//idx ¼ýÀÚ
+        frontImages.sprite = Resources.Load<Sprite>($"Images/{idx}");
+        //frontsprite¿¡ resources ¿¡¼­ Images¸¦ load
+    }
+    //Ä«µå ¿­¾úÀ»‹š
     public void OpenCard()
     {
-        front.SetActive(true); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-        back.SetActive(false);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-        animator.SetBool("isopen", true); // isopenï¿½Ï°ï¿½ì¿¡ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+        anim.SetBool("isOpen", true);
+        front.SetActive(true);
+        back.SetActive(false);
+
+
+        //firstcard°¡ ºó »óÈ²      null==ºó »óÅÂ
+        if (GameManager.Instance.firstCard == null)
+        {
+            // firstCard¿¡ Á¤º¸¸¦ ³Ñ°ÜÁÜ
+            GameManager.Instance.firstCard = this;
+        }
+
+        else
+        {
+            //secondCard¿¡ Á¤º¸¸¦ ³Ñ°ÜÁÜ
+            GameManager.Instance.secondCard = this;
+            // Mached ÇÔ¼ö¸¦ È£Ãâ
+            GameManager.Instance.Matched();
+        }
     }
+    //Å°µå Á¦°Å »óÈ²
+    public void DestroyCard()
+    {
+        Invoke("DestroyCardInvoke", 1.0f);
+    }
+
+    void DestroyCardInvoke()
+    {
+        Destroy(gameObject);
+    }
+
+    public void CloseCard()
+    {
+        Invoke("CloseCardInvoke", 1.0f);
+    }
+    void CloseCardInvoke()
+    {
+        anim.SetBool("isOpen", false);
+        front.SetActive(false);
+        back.SetActive(true);
+    }
+
 }
