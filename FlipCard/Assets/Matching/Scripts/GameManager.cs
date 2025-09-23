@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     [Header("카드 게임")]
     public Card firstCard; //첫번째로 뒤집은 카드
     public Card secondCard; //두번째로 뒤집은 카드
-    public int matched = 0;
-    public int totalPair;
+    //public int matched = 0;
+    //public int totalPair;
 
     [Header("팀원 정보")]
     public List<TeamMember> teamMembers = new List<TeamMember>(); // 팀원 정보
@@ -19,18 +19,15 @@ public class GameManager : MonoBehaviour
     [Header("UI정보")]
     public GameObject sucessPanel; //성공 시 보여줄 패널
     public GameObject failPanel; //실패 시 보여줄 패널
-    public GameObject teamDisplayPanel; //팀원들을 보여줄 패널
-    public Transform teamMemberContainer; //팀원 UI들이 들어갈 부모 오브젝트
-    public GameObject teamMemberUIPrefab; //팀원UI프리팹
 
     [Header("시간")]
     public Text timeTxt; //시간 표기
 
     [Header("점수")]
     public int score = 0; //스코어 담을 변수
-    public int bestScore = 0; //베스트 스코어 담을 변수
+    //public int bestScore = 0; //베스트 스코어 담을 변수
     public Text scoreTxt; //스코어 표기
-    public Text bestScoreTxt; //베스트 스코어 표기
+    //public Text bestScoreTxt; //베스트 스코어 표기
 
 
     public int cardCount = 0; //남아 있는 카드를 카운트할 변수
@@ -73,21 +70,9 @@ public class GameManager : MonoBehaviour
 
             if (cardCount == 0) // 남아 있는 카드가 0이면
             {
+
                 Time.timeScale = 0; //정지
                 sucessPanel.SetActive(true); //end 화면 띄우기
-
-
-                if (score > bestScore)
-                {
-                    //현재 스코어가 베스트 스코어 보다 크면 베스트 스코어에 넣기
-                    int oldBestScore = bestScore;
-                    bestScore = score;
-                    bestScoreTxt.text = score.ToString();
-                }
-                else
-                {
-                    bestScoreTxt.text = bestScore.ToString(); //베스트 스코어를 베스트 스코어에 표기
-                }
             }
         }
         else

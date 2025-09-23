@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Card : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Card : MonoBehaviour
     public GameObject front;
     public GameObject back;
     public Animator anim;
+    public Camera camera;
 
     //정수 변수상자로 변환
     // Start is called before the first frame update
@@ -27,7 +29,7 @@ public class Card : MonoBehaviour
     public void Setting(int number)
     {
         idx = number;//idx 숫자
-        frontImages.sprite = Resources.Load<Sprite>($"Images/{idx}");
+        frontImages.sprite = Resources.Load<Sprite>($"team{idx}");
         //frontsprite에 resources 에서 Images를 load
     }
     //카드 열었을떄
@@ -44,7 +46,6 @@ public class Card : MonoBehaviour
             // firstCard에 정보를 넘겨줌
             GameManager.Instance.firstCard = this;
         }
-
         else
         {
             //secondCard에 정보를 넘겨줌
@@ -56,7 +57,7 @@ public class Card : MonoBehaviour
     //키드 제거 상황
     public void DestroyCard()
     {
-        Invoke("DestroyCardInvoke", 1.0f);
+        Invoke("DestroyCardInvoke", 1f);
     }
 
     void DestroyCardInvoke()
