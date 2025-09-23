@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExitGameBtn : MonoBehaviour
 {
-    //클릭 시 게임 종료
+    public AudioClip clickSound;
+    public AudioSource audioSource;
+
     public void GameExit()
     {
+        StartCoroutine(PlaySoundLoad());
+    }
+
+    private IEnumerator PlaySoundLoad()
+    {
+        audioSource.PlayOneShot(clickSound);
+        yield return new WaitForSeconds(clickSound.length);
         Application.Quit();
     }
 }

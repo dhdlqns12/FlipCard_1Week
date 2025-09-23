@@ -5,9 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class StartGameBtn : MonoBehaviour
 {
-    public void StartGame()
+    public AudioClip clickSound;
+    public AudioSource audioSource;
+
+    public void OnClickStart()
     {
-        //클릭 시 Main 씬으로 이동
+        StartCoroutine(PlaySoundLoad());
+    }
+
+    private IEnumerator PlaySoundLoad()
+    {
+        audioSource.PlayOneShot(clickSound);
+        yield return new WaitForSeconds(clickSound.length);
         SceneManager.LoadScene("Main");
     }
 }
