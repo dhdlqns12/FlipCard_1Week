@@ -460,6 +460,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: failPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6922584839286660072, guid: 1ad33f594fb7f994787bff62b0e71d62, type: 3}
+      propertyPath: m_Transition
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8408760243537540298, guid: 1ad33f594fb7f994787bff62b0e71d62, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
