@@ -19,10 +19,12 @@ public class Board_1 : MonoBehaviour
         if (GameManager.Instance.isStageLevel0)
         {
             Stage0();
+            GameManager.Instance.isStageLevel0 = false;
         }
         else if (GameManager.Instance.isStageLevel1)
         {
-            Stage1();
+            Invoke("Stage1", 3);
+            GameManager.Instance.isStageLevel1 = false;
         }
     }
 
@@ -46,7 +48,7 @@ public class Board_1 : MonoBehaviour
             card.GetComponent<Card>().Setting(arr[i]);
         }
         GameManager.Instance.cardCount = arr.Length;
-        GameManager.Instance.isStageLevel0 = false;
+        
     }
 
     public void Stage1()
@@ -69,7 +71,7 @@ public class Board_1 : MonoBehaviour
             card.GetComponent<Card>().Setting(arr[i]);
         }
         GameManager.Instance.cardCount = arr.Length;
-        GameManager.Instance.isStageLevel1 = false;
+        
     }
 
 }
