@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public Text scoreTxt; //스코어 표기
     //public Text bestScoreTxt; //베스트 스코어 표기
 
-
+    public int stageLevel = 0; //스테이지 레벨
     public int cardCount = 0; //남아 있는 카드를 카운트할 변수
 
     public float time;
@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
         }
         Time.timeScale = 1; // 정지 화면 초기화
         score = 0; //현재 스코어 초기화
-        cardCount = 20; //카드 카운트 초기화
     }
 
     void Update() // 시간 증가
@@ -54,6 +53,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             failPanel.SetActive(true);
+            stageLevel = 0; //실패 시 스테이지 레벨 0으로 초기화
         }
         scoreTxt.text = score.ToString(); // 현재 스코어 표기
     }
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
             if (cardCount == 0) // 남아 있는 카드가 0이면
             {
-
+                stageLevel++; //성공 시 스테이지 레벨 증가
                 Time.timeScale = 0; //정지
                 sucessPanel.SetActive(true); //end 화면 띄우기
             }
