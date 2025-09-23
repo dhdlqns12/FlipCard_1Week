@@ -50,7 +50,7 @@ MonoBehaviour:
   idx: 0
   front: {fileID: 240541367127705288}
   back: {fileID: 5658192242155423858}
-  anim: {fileID: 0}
+  anim: {fileID: 1986695817614727935}
   frontImages: {fileID: 0}
 --- !u!95 &1986695817614727935
 Animator:
