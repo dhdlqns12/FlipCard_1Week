@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: e7552375912c0ad41841f858a8ace03e
+guid: 7d506cac8563714448bf3812703b74d0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hover_img: {instanceID: 0}
+  - no_hover_img: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
