@@ -11,7 +11,7 @@ public class Board_1 : MonoBehaviour
     void Start()
     {
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
-        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
+        arr = arr.OrderBy(x => Random.Range(0f, 4f)).ToArray();
 
         for (int i = 0; i < 10; i++)
         {
