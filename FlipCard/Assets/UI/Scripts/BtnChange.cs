@@ -14,14 +14,14 @@ public class BtnChange : MonoBehaviour
     //현재 오브젝트에 붙어있는 image 컴포넌트를 저장할 변수
     Image thisImg; 
 
-    // Start is called before the first frame update
+
     void Start()
     {
         //이 스크립트가 붙은 UI 오브젝트에서 Image 컴포넌트를 가져옴
         thisImg = GetComponent<Image>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
