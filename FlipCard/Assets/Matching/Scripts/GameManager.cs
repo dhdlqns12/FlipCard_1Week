@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public int stageLevel = 0; //스테이지 레벨
     public int cardCount = 0; //남아 있는 카드를 카운트할 변수
+    public bool isStageLevel0 = true;
+    public bool isStageLevel1 = false;
 
     public float time;
 
@@ -51,9 +53,10 @@ public class GameManager : MonoBehaviour
         timeTxt.text = time.ToString("N2");
         if (time >= 30) //30초를 넘을 시 게임 종료
         {
-            Time.timeScale = 0;
             failPanel.SetActive(true);
             stageLevel = 0; //실패 시 스테이지 레벨 0으로 초기화
+            isStageLevel1 = false;
+            Time.timeScale = 0;
         }
         scoreTxt.text = score.ToString(); // 현재 스코어 표기
     }
@@ -70,9 +73,15 @@ public class GameManager : MonoBehaviour
 
             if (cardCount == 0) // 남아 있는 카드가 0이면
             {
+                if (stageLevel == 1)
+                {
+                    sucessPanel.SetActive(true);
+                    Time.timeScale = 0;
+                    return;
+                }
                 stageLevel++; //성공 시 스테이지 레벨 증가
-                Time.timeScale = 0; //정지
-                sucessPanel.SetActive(true); //end 화면 띄우기
+                isStageLevel1 = true;
+                time = 0; // 시간도 초기화
             }
         }
         else
@@ -85,4 +94,5 @@ public class GameManager : MonoBehaviour
         firstCard = null;
         secondCard = null;
     }
+
 }

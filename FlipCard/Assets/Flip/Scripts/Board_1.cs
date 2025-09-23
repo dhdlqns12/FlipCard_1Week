@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Board_1 : MonoBehaviour
@@ -10,49 +11,65 @@ public class Board_1 : MonoBehaviour
 
     void Start()
     {
-        if (GameManager.Instance.stageLevel == 0)
-        {
-            int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
-            arr = arr.OrderBy(x => Random.Range(0f, 4f)).ToArray();
-
-            for (int i = 0; i < 10; i++)
-            {
-                int row = i / 5;
-                int col = i % 5;
-
-                float x = col - 2;
-                float y = row * 1.5f;
-
-                Vector3 pos = new Vector3(x, y, 0);
-                GameObject card = Instantiate(cardPrefab, board);
-                card.transform.localPosition = pos;
-                card.name = $"Card_{i}";
-                card.GetComponent<Card>().Setting(arr[i]);
-            }
-            GameManager.Instance.cardCount = arr.Length;
-        }
-        else if (GameManager.Instance.stageLevel == 1)
-        {
-            int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9 };
-            arr = arr.OrderBy(x => Random.Range(0f, 4f)).ToArray();
-
-            for (int i = 0; i < 20; i++)
-            {
-                int row = i / 5;
-                int col = i % 5;
-
-                float x = col - 2;
-                float y = row * 1.5f;
-
-                Vector3 pos = new Vector3(x, y, 0);
-                GameObject card = Instantiate(cardPrefab, board);
-                card.transform.localPosition = pos;
-                card.name = $"Card_{i}";
-                card.GetComponent<Card>().Setting(arr[i]);
-            }
-            GameManager.Instance.cardCount = arr.Length;
-        }
         
-
     }
+
+    void Update()
+    {
+        if (GameManager.Instance.isStageLevel0)
+        {
+            Stage0();
+        }
+        else if (GameManager.Instance.isStageLevel1)
+        {
+            Stage1();
+        }
+    }
+
+    public void Stage0()
+    {
+        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
+        arr = arr.OrderBy(x => Random.Range(0f, 4f)).ToArray();
+
+        for (int i = 0; i < 10; i++)
+        {
+            int row = i / 5;
+            int col = i % 5;
+
+            float x = col - 2;
+            float y = row * 1.5f;
+
+            Vector3 pos = new Vector3(x, y, 0);
+            GameObject card = Instantiate(cardPrefab, board);
+            card.transform.localPosition = pos;
+            card.name = $"Card_{i}";
+            card.GetComponent<Card>().Setting(arr[i]);
+        }
+        GameManager.Instance.cardCount = arr.Length;
+        GameManager.Instance.isStageLevel0 = false;
+    }
+
+    public void Stage1()
+    {
+        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9 };
+        arr = arr.OrderBy(x => Random.Range(0f, 9f)).ToArray();
+
+        for (int i = 0; i < 20; i++)
+        {
+            int row = i / 5;
+            int col = i % 5;
+
+            float x = col - 2;
+            float y = row * 1.5f;
+
+            Vector3 pos = new Vector3(x, y, 0);
+            GameObject card = Instantiate(cardPrefab, board);
+            card.transform.localPosition = pos;
+            card.name = $"Card_{i}";
+            card.GetComponent<Card>().Setting(arr[i]);
+        }
+        GameManager.Instance.cardCount = arr.Length;
+        GameManager.Instance.isStageLevel1 = false;
+    }
+
 }
