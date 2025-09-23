@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject front;
+    public GameObject back;
+    public Animator animator;
+    public SpriteRenderer frontimage;
 
-    // Update is called once per frame
-    void Update()
+    public void OpenCard()
     {
-        
+        front.SetActive(true); //���� ���� ��쿡 ���ӿ�����Ʈ�� ����
+        back.SetActive(false);//�������� ��쿡 ���ӿ�����Ʈ�� �����
+        animator.SetBool("isopen", true); // isopen�ϰ�쿡 �ִϸ��̼��� �����Ѵ�.
     }
 }
