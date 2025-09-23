@@ -25,6 +25,7 @@ public class Board_1 : MonoBehaviour
             GameObject card = Instantiate(cardPrefab, board);
             card.transform.localPosition = pos;
             card.name = $"Card_{i}";
+            card.GetComponent<Card>().Setting(arr[i]);
         }
         GameManager.Instance.cardCount = arr.Length;
     }
