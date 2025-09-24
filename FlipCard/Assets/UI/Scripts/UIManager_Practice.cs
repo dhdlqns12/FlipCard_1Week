@@ -2,94 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//public enum UIType
-//{
-//    Option,
-//    Title,
-//    Stage,
-//    Back,
-//    BackGround,
-//    Menu
-//}
+public abstract class BasePanel : MonoBehaviour //추상 클래스로 모든 UI패널의 베이스 클래스
+{
+    [SerializeField]
+    private string panelName;
+
+    public string PanelName => panelName;
+
+    public virtual void ShowPanel() //가상 함수 Panel이 활성화 될 때 호출 하위 클래스에 오버라이드 하여 필요한 Init작업 수행
+    {
+
+    }
+
+    public virtual void HidePanel() //가상 함수 Panel이 비 활성화 될 때 호출 하위 클래스에 오버라이드 하여 필요한 Init작업 수행
+    {
+
+    }
+
+
+}
 
 public class UIManager_Practice : MonoBehaviour
 {
-    public static UIManager_Practice Instance;
+    [Header("패널 컨테이너")]
+    public Transform usePanel;
+    public Transform unUsePanel;
 
-    [Header("UI등록")]
-    public List<UIType> uiTypes;
-    public List<GameObject> uiObjects;
+    [Header("애니메이션  설정")]
+    public float animationDuration = 0.3f;
+    public AnimationCurve animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); //AinmationCurve 0초에 0으로 시작해서 1초에 1로끝남
 
-    private Dictionary<UIType, GameObject> uiDiction = new Dictionary<UIType, GameObject>();
+    [Header("패널")]
+    public List<BasePanel> allPanels = new List<BasePanel>();
 
-    [Header("UI Root")]
-    public Transform uiRoot;
-
-    [Header("씬 시작 시 켤 UI")]
-    public UIType[] initialActiveUI;
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        if(uiRoot == null)
-        {
-            uiRoot = this.transform;
-        }
-
-        for(int i = 0; i<Mathf.Min(uiTypes.Count,uiObjects.Count);i++)
-        {
-            GameObject uiInstance = Instantiate(uiObjects[i], uiRoot);
-            uiDiction[uiTypes[i]] = uiObjects[i];
-            uiObjects[i].SetActive(false);
-        }
-
-        foreach (UIType ui in initialActiveUI)
-        {
-            if(uiDiction.ContainsKey(ui))
-            {
-                uiDiction[ui].SetActive(true);
-            }
-        }
-    }
-
-    public void ShowUI(UIType uiType)
-    {
-        foreach(var key in uiDiction)
-        {
-            key.Value.SetActive(false);
-        }
-
-        if (uiDiction.ContainsKey(uiType))
-            uiDiction[uiType].SetActive(true);
-    }
-
-    public void HideUI(UIType uiType)
-    {
-        if (uiDiction.ContainsKey(uiType))
-            uiDiction[uiType].SetActive(false);
-    }
-
-    public void ToggleUI(UIType uiType)
-    {
-        if (uiDiction.ContainsKey(uiType))
-        {
-            uiDiction[uiType].SetActive(!uiDiction[uiType].activeSelf);
-        }
-    }
-
-    public GameObject GetUI(UIType uiType)
-    {
-        if(uiDiction.ContainsKey(uiType))
-        {
-            return uiDiction[uiType];           
-        }
-        return null;
-    }
+    private BasePanel currentActivePanel;
+    private Dictionary<string, BasePanel> aaa;
 }
