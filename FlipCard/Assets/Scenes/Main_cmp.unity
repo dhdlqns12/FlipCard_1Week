@@ -175,7 +175,10 @@ MonoBehaviour:
   timeTxt: {fileID: 1292700666}
   score: 0
   scoreTxt: {fileID: 1969476357}
+  stageLevel: 0
   cardCount: 0
+  isStageLevel0: 1
+  isStageLevel1: 0
   time: 0
 --- !u!1 &351327084
 GameObject:
@@ -468,6 +471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1225101898}
   - component: {fileID: 1225101899}
+  - component: {fileID: 1225101900}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -504,6 +508,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 5371615638319681, guid: 6eb8280308b249846af659f8d971f3a7, type: 3}
   board: {fileID: 1225101898}
+  animator: {fileID: 1225101900}
+--- !u!95 &1225101900
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225101897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c957936a3a46f3546a3b4d4345620e08, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1265388223
 PrefabInstance:
   m_ObjectHideFlags: 0

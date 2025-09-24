@@ -8,7 +8,7 @@ public class Board_1 : MonoBehaviour
 {
     public GameObject cardPrefab;
     public Transform board;
-
+    public Animator animator;
     void Start()
     {
         
@@ -40,7 +40,7 @@ public class Board_1 : MonoBehaviour
             int col = i % 5;
 
             float x = col - 2;
-            float y = row * 1.5f;
+            float y = row + 4.5f;
 
             Vector3 pos = new Vector3(x, y, 0);
             GameObject card = Instantiate(cardPrefab, board);
@@ -64,13 +64,14 @@ public class Board_1 : MonoBehaviour
             int col = i % 5;
 
             float x = col - 2;
-            float y = (row - 0.8f) * 1.5f;
+            float y = (row + 3.25f);
 
             Vector3 pos = new Vector3(x, y, 0);
             GameObject card = Instantiate(cardPrefab, board);
             card.transform.localPosition = pos;
             card.name = $"Card_{i}";
             card.GetComponent<Card>().Setting(arr[i]);
+            animator.Play("carddrop",0,0f); //play를 사용해서 이 스크립트를 실행할 때 "carddrop을 실행한다.
         }
         GameManager.Instance.cardCount = arr.Length;
         

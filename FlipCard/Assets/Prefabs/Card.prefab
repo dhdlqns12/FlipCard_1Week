@@ -51,7 +51,6 @@ MonoBehaviour:
   front: {fileID: 240541367127705288}
   back: {fileID: 5658192242155423858}
   anim: {fileID: 1986695817614727935}
-  camera: {fileID: 0}
   frontImages: {fileID: 856489562633323082}
 --- !u!95 &1986695817614727935
 Animator:
