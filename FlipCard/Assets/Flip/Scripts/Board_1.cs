@@ -18,18 +18,18 @@ public class Board_1 : MonoBehaviour
     {
         if (GameManager.Instance.isStageLevel0)
         {
-            Stage1();
+            Stage0();
             GameManager.Instance.isStageLevel0 = false; //반복 실행 막기 위한 장치
         }
         else if (GameManager.Instance.isStageLevel1)
         {
-            Invoke("Stage2", 1f);
+            Invoke("Stage1", 1f);
             GameManager.Instance.timeTxt.gameObject.SetActive(false); //다음 스테이지 실행 예열할 동안 시간 지나는 것 막기
             GameManager.Instance.isStageLevel1 = false;
         }
     }
 
-    public void Stage1()
+    public void Stage0()
     {
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
         arr = arr.OrderBy(x => Random.Range(0f, 4f)).ToArray();
@@ -52,7 +52,7 @@ public class Board_1 : MonoBehaviour
         
     }
 
-    public void Stage2()
+    public void Stage1()
     {
         GameManager.Instance.timeTxt.gameObject.SetActive(true); //함수 실행과 동시에 시간 카운트다운
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9 };
