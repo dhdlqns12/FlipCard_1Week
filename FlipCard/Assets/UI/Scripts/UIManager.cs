@@ -1,16 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum UIType
-{
-    Option,
-    Title,
-    Stage,
-    Back,
-    BackGround,
-    Menu
-}
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -25,5 +17,22 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+    }
+
+    public void SelectStage(int stageNum)
+    {       
+        PlayerPrefs.SetInt("SelectStage", stageNum);
+        SceneManager.LoadScene("Main_cmp");
+    }
+
+    public void StageToStart()
+    {
+        SceneManager.LoadScene("StartTitle");
+    }
+
+    public void QuitOption()
+    {
+        this.transform.parent.gameObject.SetActive(false);
     }
 }

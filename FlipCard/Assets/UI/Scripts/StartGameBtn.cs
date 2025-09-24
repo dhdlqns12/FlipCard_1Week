@@ -17,6 +17,6 @@ public class StartGameBtn : MonoBehaviour
     {
         audioSource.PlayOneShot(clickSound);
         yield return new WaitForSeconds(clickSound.length);
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("StageScene");
     }
 }
