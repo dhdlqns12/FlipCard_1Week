@@ -13,8 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject objectToActivate2;
 
     [Header("AudioUI")]
-    public Slider bgmSlider; //bgm(¹è°æÀ½¾Ç) ½½¶óÀÌ´õ
-    public Slider sfxSlider; //sfx(È¿°úÀ½) ½½¶óÀÌ´õ
+    public Slider bgmSlider; //bgm(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
+    public Slider sfxSlider; //sfx(È¿ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
 
 
 
@@ -39,10 +39,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //¾À ·Îµå ÀÌº¥Æ® ±¸µ¶
+        //ï¿½ï¿½ ï¿½Îµï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         SceneManager.sceneLoaded += OnsceneLoaded;
         
-        //ÇöÀç ¾À Ã¼Å©
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¼Å©
         CheckCurrentScene();
 
         if (bgmSlider != null)
@@ -62,14 +62,22 @@ public class UIManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // ÀÌº¥Æ® ±¸µ¶ ÇØÁ¦
+        // ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         SceneManager.sceneLoaded -= OnsceneLoaded;
     }
 
     public void SelectStage(int stageNum)
     {
         PlayerPrefs.SetInt("SelectStage", stageNum);
-        SceneManager.LoadScene("Main_cmp");
+        if (stageNum >= 0)
+        {
+            SceneManager.LoadScene("Main_cmp");
+        }
+        else
+        {
+            SceneManager.LoadScene("HiddenStagePlayScene");
+        }
+        
     }
 
     public void StageToStart()
@@ -94,7 +102,7 @@ public class UIManager : MonoBehaviour
             objectToActivate.SetActive(false);
         }
 
-        if(currentScene.name == "StartTitle 1")
+        if (currentScene.name == "StartTitle 1")
         {
             objectToActivate2.SetActive(true);
         }

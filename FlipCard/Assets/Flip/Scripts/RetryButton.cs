@@ -14,5 +14,4 @@ public class RetryButton : MonoBehaviour
     {
         SceneManager.LoadScene("HiddenStageScene");
     }
-
 }
