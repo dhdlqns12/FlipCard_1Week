@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public int cardCount = 0; //남아 있는 카드를 카운트할 변수
     public bool isStageLevel0 = true;
     public bool isStageLevel1 = false;
+    public bool isHiddenStage = false;
 
     public float time;
 
@@ -97,6 +98,12 @@ public class GameManager : MonoBehaviour
                     Time.timeScale = 0;
                     return;
                 }
+                else if (stageLevel == -1)
+                {
+                    sucessPanel.SetActive(true);
+                    Time.timeScale = 0;
+                    return;
+                }
                 stageLevel++; //성공 시 스테이지 레벨 증가
                 isStageLevel1 = true;
                 time = 0; // 시간도 초기화
@@ -115,15 +122,21 @@ public class GameManager : MonoBehaviour
 
     public void StageLevel()
     {
-        if(stageLevel==0)
+        if (stageLevel == 0)
         {
             isStageLevel0 = true;
             isStageLevel1 = false;
         }
-        else if(stageLevel==1)
+        else if (stageLevel == 1)
         {
             isStageLevel0 = false;
             isStageLevel1 = true;
+        }
+        else if (stageLevel == -1)
+        {
+            isStageLevel0 = false;
+            isStageLevel1 = false;
+            isHiddenStage = true;
         }
     }
 }

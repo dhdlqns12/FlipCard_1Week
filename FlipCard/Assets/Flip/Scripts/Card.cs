@@ -31,6 +31,14 @@ public class Card : MonoBehaviour
         frontImages.sprite = Resources.Load<Sprite>($"team{idx}");
         //frontsprite에 resources 에서 Images를 load
     }
+
+    public void HiddenSetting(int number)
+    {
+        idx = number;//idx 숫자
+        frontImages.sprite = Resources.Load<Sprite>($"hiddenTeam{idx}");
+        //frontsprite에 resources 에서 Images를 load
+    }
+    
     //카드 열었을떄
     public void OpenCard()
     {
@@ -54,6 +62,30 @@ public class Card : MonoBehaviour
             GameManager.Instance.Matched();
         }
     }
+
+    public void HiddenOpenCard()
+    {
+        //AudioManager.instance.OpenCardSFX(); //히든 스테이지에서 카드 클릭시 여기서 오류가 떠서 새로 함수를 만듦
+        anim.SetBool("isOpen", true);
+        front.SetActive(true);
+        back.SetActive(false);
+
+
+        //firstcard가 빈 상황      null==빈 상태
+        if (GameManager.Instance.firstCard == null)
+        {
+            // firstCard에 정보를 넘겨줌
+            GameManager.Instance.firstCard = this;
+        }
+        else
+        {
+            //secondCard에 정보를 넘겨줌
+            GameManager.Instance.secondCard = this;
+            // Mached 함수를 호출
+            GameManager.Instance.Matched();
+        }
+    }
+
     //키드 제거 상황
     public void DestroyCard()
     {

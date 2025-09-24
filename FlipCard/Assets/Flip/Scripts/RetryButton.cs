@@ -10,4 +10,9 @@ public class RetryButton : MonoBehaviour
         SceneManager.LoadScene("StartTitle 1");
     }
 
+    public void HiddenButton()
+    {
+        SceneManager.LoadScene("HiddenStageScene");
+    }
+
 }
