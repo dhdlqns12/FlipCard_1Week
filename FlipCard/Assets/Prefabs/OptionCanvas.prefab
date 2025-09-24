@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionPanel: {fileID: 5711073888208495243}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 3894437974271997236}
   clickSound: {fileID: 8300000, guid: 73f3566254369904fbddbc38387624dd, type: 3}
 --- !u!82 &3894437974271997236
 AudioSource:
@@ -560,7 +560,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8136801684784025639, guid: 962540dc60c7776468626b608ac8b865, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 73f3566254369904fbddbc38387624dd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1070,12 +1070,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3208145206651573771}
   - {fileID: 2820963467708764281}
   - {fileID: 5666266792550574694}
   - {fileID: 6062600141484081333}
   - {fileID: 8911360845273588455}
   - {fileID: 6975665412731625724}
+  - {fileID: 3208145206651573771}
   m_Father: {fileID: 6870520778371773684}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4420085496263558212
 MonoBehaviour:
   m_ObjectHideFlags: 0
