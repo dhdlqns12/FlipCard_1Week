@@ -6,14 +6,18 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
     [Header("Audio")]
-    public AudioSource audioSource;
+    public AudioSource audioSourceBgm;
+    public AudioSource audioSourceSfx;
     public AudioMixer audioMixer; //Audio Mixer 참조
+    public Slider bgmSlider;      //배경음악(BGM) 슬라이더
+    public Slider sfxSlider;      //효과음(SFX) 슬라이더
 
 
     [Header("AudioClip")]
@@ -46,6 +50,27 @@ public class AudioManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnsceneLoaded;
     }
 
+    void Start()
+    {
+        //저장된 볼륨값을 불러오기, 없을 경우 기본값 0.75 적용
+        bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        //초기화된 슬라이더 값으로 볼륨 설정
+
+        SetBGMVolume(bgmSlider.value);
+        SetSFXVolume(sfxSlider.value);
+    }
+
+    private void Update()
+    {
+        //초기화된 슬라이더 값으로 볼륨 설정
+        if (bgmSlider != null && sfxSlider != null)
+        {
+            SetBGMVolume(bgmSlider.value);
+            SetSFXVolume(sfxSlider.value);
+        }
+    }
+
     private void OnsceneLoaded(Scene scene, LoadSceneMode mode)
     {
         PlayBGM(scene.buildIndex);
@@ -55,9 +80,9 @@ public class AudioManager : MonoBehaviour
     {
         if (bgmclips.Length > 0 && index < bgmclips.Length)
         {
-            audioSource.clip = bgmclips[index];
-            audioSource.loop = true;
-            audioSource.Play();
+            audioSourceBgm.clip = bgmclips[index];
+            audioSourceBgm.loop = true;
+            audioSourceBgm.Play();
         }
     }
 
@@ -92,14 +117,22 @@ public class AudioManager : MonoBehaviour
     //카드 열 때 사운드
     public void OpenCardSFX()
     {
-        audioSource?.PlayOneShot(flipSound);
+        audioSourceSfx.PlayOneShot(flipSound);
+    }
 
+    public void PlaySfx(AudioClip clip)
+    {
+        if(clip!=null&& audioSourceSfx!=null)
+        {
+            audioSourceSfx.PlayOneShot(clip);
+            Debug.Log("버튼 클릭음 재생");
+        }
     }
 
     //버튼 클릭 시 효과음 나고 행동하기
     public IEnumerator PlaySoundThenAction(AudioClip sound, System.Action onCompleteAction = null)
     {
-        audioSource.PlayOneShot(sound);
+        audioSourceSfx.PlayOneShot(sound);
         yield return new WaitForSeconds(sound.length);
         onCompleteAction?.Invoke();
     }

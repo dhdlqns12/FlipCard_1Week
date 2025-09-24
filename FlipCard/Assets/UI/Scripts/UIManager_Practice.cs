@@ -18,8 +18,6 @@ public abstract class BasePanel : MonoBehaviour //추상 클래스로 모든 UI패널의 베
     {
 
     }
-
-
 }
 
 public class UIManager_Practice : MonoBehaviour
@@ -36,5 +34,42 @@ public class UIManager_Practice : MonoBehaviour
     public List<BasePanel> allPanels = new List<BasePanel>();
 
     private BasePanel currentActivePanel;
-    private Dictionary<string, BasePanel> aaa;
+    private Dictionary<string, BasePanel> panelDictionary;
+
+    private void Awake()
+    {
+        
+    }
+
+    private void InitializePanels()
+    {
+        panelDictionary = new Dictionary<string, BasePanel>();
+
+        foreach(var panel in allPanels)
+        {
+            panelDictionary[panel.PanelName] = panel;
+
+        }
+    }
+
+    public void ShowPanel(string panelName, bool useAnimation=true)
+    {
+        if(!panelDictionary.ContainsKey(panelName))
+        {
+            Debug.LogError("패널 없음");
+            return;
+        }
+
+        var targetPanel = panelDictionary[panelName];
+
+        if(currentActivePanel!=null&&currentActivePanel!=targetPanel)
+        { 
+           
+        }
+    }
+
+    public bool IsPanelActive(string panelName)
+    {
+        return currentActivePanel != null && currentActivePanel.PanelName == panelName;
+    }
 }

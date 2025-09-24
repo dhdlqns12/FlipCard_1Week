@@ -9,98 +9,131 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    public GameObject objectToActivate;
-    public GameObject objectToActivate2;
+    public GameObject optionWindow;
 
-    [Header("AudioUI")]
-    public Slider bgmSlider; //bgm(배경음악) 슬라이더
-    public Slider sfxSlider; //sfx(효과음) 슬라이더
+    public AudioClip buttonClickSfx;
+    public AudioClip CardFlipSfx;
 
+    //public GameObject objectToActivate;
+    //public GameObject objectToActivate2;
 
+    //[Header("AudioUI")]
+    //public Slider bgmSlider; //bgm(배경음악) 슬라이더
+    //public Slider sfxSlider; //sfx(효과음) 슬라이더
 
-    private void Awake()
+    public void GameStart()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-    }
-    private void OnsceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        CheckCurrentScene();
+        AudioManager.instance.PlaySfx(buttonClickSfx);
+        SceneManager.LoadScene("StageScene");
     }
 
-    private void Start()
+    public void OpenOption()
     {
-        //씬 로드 이벤트 구독
-        SceneManager.sceneLoaded += OnsceneLoaded;
-        
-        //현재 씬 체크
-        CheckCurrentScene();
-
-        if (bgmSlider != null)
-        {
-            bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1f);
-            bgmSlider.onValueChanged.AddListener(AudioManager.instance.SetBGMVolume);
-            AudioManager.instance.SetBGMVolume(bgmSlider.value);
-        }
-
-        if (sfxSlider != null)
-        {
-            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
-            sfxSlider.onValueChanged.AddListener(AudioManager.instance.SetSFXVolume);
-            AudioManager.instance.SetSFXVolume(sfxSlider.value);
-        }
+        optionWindow.SetActive(true);
+        AudioManager.instance.PlaySfx(buttonClickSfx);
     }
 
-    private void OnDestroy()
+    public void CloseOption()
     {
-        // 이벤트 구독 해제
-        SceneManager.sceneLoaded -= OnsceneLoaded;
+        optionWindow.SetActive(false);
+        AudioManager.instance.PlaySfx(buttonClickSfx);
     }
 
-    public void SelectStage(int stageNum)
+    public void SelectStage(int num)
     {
-        PlayerPrefs.SetInt("SelectStage", stageNum);
+        PlayerPrefs.SetInt("SelectStage", num);
         SceneManager.LoadScene("Main_cmp");
+        AudioManager.instance.PlaySfx(buttonClickSfx);
     }
 
     public void StageToStart()
     {
-        SceneManager.LoadScene("StartTitle");
-    }
-
-    public void Retry()
-    {
         SceneManager.LoadScene("StartTitle 1");
+        AudioManager.instance.PlaySfx(buttonClickSfx);
     }
 
-    public void CheckCurrentScene()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "StageScene")
-        {
-            objectToActivate.SetActive(true);
-        }
-        else
-        {
-            objectToActivate.SetActive(false);
-        }
+    //private void Awake()
+    //{
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //        return;
+    //    }
 
-        if(currentScene.name == "StartTitle 1")
-        {
-            objectToActivate2.SetActive(true);
-        }
-        else
-        {
-            objectToActivate2.SetActive(false);
-        }
-    }
+    //}
+    //private void OnsceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    CheckCurrentScene();
+    //}
+
+    //private void Start()
+    //{
+    //    //씬 로드 이벤트 구독
+    //    SceneManager.sceneLoaded += OnsceneLoaded;
+        
+    //    //현재 씬 체크
+    //    CheckCurrentScene();
+
+    //    if (bgmSlider != null)
+    //    {
+    //        bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1f);
+    //        bgmSlider.onValueChanged.AddListener(AudioManager.instance.SetBGMVolume);
+    //        AudioManager.instance.SetBGMVolume(bgmSlider.value);
+    //    }
+
+    //    if (sfxSlider != null)
+    //    {
+    //        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+    //        sfxSlider.onValueChanged.AddListener(AudioManager.instance.SetSFXVolume);
+    //        AudioManager.instance.SetSFXVolume(sfxSlider.value);
+    //    }
+    //}
+
+    //private void OnDestroy()
+    //{
+    //    // 이벤트 구독 해제
+    //    SceneManager.sceneLoaded -= OnsceneLoaded;
+    //}
+
+    //public void SelectStage(int stageNum)
+    //{
+    //    PlayerPrefs.SetInt("SelectStage", stageNum);
+    //    SceneManager.LoadScene("Main_cmp");
+    //}
+
+    //public void StageToStart()
+    //{
+    //    SceneManager.LoadScene("StartTitle");
+    //}
+
+    //public void Retry()
+    //{
+    //    SceneManager.LoadScene("StartTitle 1");
+    //}
+
+    //public void CheckCurrentScene()
+    //{
+    //    Scene currentScene = SceneManager.GetActiveScene();
+    //    if (currentScene.name == "StageScene")
+    //    {
+    //        objectToActivate.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        objectToActivate.SetActive(false);
+    //    }
+
+    //    if(currentScene.name == "StartTitle 1")
+    //    {
+    //        objectToActivate2.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        objectToActivate2.SetActive(false);
+    //    }
+    //}
 }
