@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionPanel: {fileID: 4531245830697883856, guid: ff108cf043dca5f4080fd3a3348fdaec, type: 3}
+  audioSource: {fileID: 0}
+  clickSound: {fileID: 0}
 --- !u!1 &4583512192147105162
 GameObject:
   m_ObjectHideFlags: 0
