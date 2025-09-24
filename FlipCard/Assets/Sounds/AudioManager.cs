@@ -14,8 +14,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioMixer audioMixer; //Audio Mixer 참조
-    public Slider bgmSlider; //bgm(배경음악) 슬라이더
-    public Slider sfxSlider; //sfx(효과음) 슬라이더
+
 
     [Header("AudioClip")]
     public AudioClip[] bgmclips; //bgm 클립 배열
@@ -50,26 +49,6 @@ public class AudioManager : MonoBehaviour
     private void OnsceneLoaded(Scene scene, LoadSceneMode mode)
     {
         PlayBGM(scene.buildIndex);
-    }
-
-
-    private void Start()
-    {
-        if(bgmSlider != null)
-        {
-            bgmSlider.onValueChanged.RemoveAllListeners();
-            bgmSlider.onValueChanged.AddListener(SetBGMVolume);
-            bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1f);
-            SetBGMVolume(bgmSlider.value);
-        }
-
-        if(sfxSlider != null)
-        {
-            sfxSlider.onValueChanged.RemoveAllListeners();
-            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
-            SetSFXVolume(sfxSlider.value);
-        }
     }
 
     public void PlayBGM(int index)
@@ -117,17 +96,11 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    //버튼 클릭 사운드
-    public void BtnClickSound()
+    //버튼 클릭 시 효과음 나고 행동하기
+    public IEnumerator PlaySoundThenAction(AudioClip sound, System.Action onCompleteAction = null)
     {
-        audioSource?.PlayOneShot(clickSound);
-    }
-
-    //씬 변경 버튼 사운드
-    public IEnumerator PlaySoundLoad(string sceneName)
-    {
-        audioSource?.PlayOneShot(clickSound);
-        yield return new WaitForSeconds(clickSound.length);
-        SceneManager.LoadScene(sceneName);
+        audioSource.PlayOneShot(sound);
+        yield return new WaitForSeconds(sound.length);
+        onCompleteAction?.Invoke();
     }
 }

@@ -172,10 +172,13 @@ MonoBehaviour:
   teamMembers: []
   sucessPanel: {fileID: 0}
   failPanel: {fileID: 0}
-  timeTxt: {fileID: 0}
+  timeTxt: {fileID: 1292700666}
   score: 0
   scoreTxt: {fileID: 0}
+  stageLevel: 0
   cardCount: 0
+  isStageLevel0: 1
+  isStageLevel1: 0
   time: 0
 --- !u!1 &351327084
 GameObject:
@@ -498,7 +501,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c15ef7850962d4dbe195b39f4b9fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 793e6e9243fcd9148a34b0c3a69a5fd2, type: 3}
+  audioSource: {fileID: 0}
+  audioMixer: {fileID: 0}
+  bgmclips: []
+  clickSound: {fileID: 0}
+  flipSound: {fileID: 0}
 --- !u!4 &1063646681
 Transform:
   m_ObjectHideFlags: 0
@@ -636,6 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 5371615638319681, guid: 6eb8280308b249846af659f8d971f3a7, type: 3}
   board: {fileID: 1225101898}
+  animator: {fileID: 0}
 --- !u!1 &1292700664
 GameObject:
   m_ObjectHideFlags: 0
