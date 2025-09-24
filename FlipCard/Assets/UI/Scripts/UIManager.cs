@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum UIType
 {
@@ -25,5 +27,12 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+    }
+
+    public void SelectStage(int stageNum)
+    {       
+        PlayerPrefs.SetInt("SelectStage", stageNum);
+        SceneManager.LoadScene("Main_cmp");
     }
 }

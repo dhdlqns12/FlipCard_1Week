@@ -47,6 +47,24 @@ public class GameManager : MonoBehaviour
         score = 0; //현재 스코어 초기화
     }
 
+    private void Start()
+    {
+        int selectStage = PlayerPrefs.GetInt("SelectStage", 0);
+
+        stageLevel = selectStage;
+        StageLevel();
+
+        //switch(selectStage)
+        //{
+        //    case 0:
+        //        isStageLevel0 = true;
+        //        break;
+        //    case 1:
+        //        isStageLevel1 = true;
+        //        break;
+        //}
+    }
+
     void Update() // 시간 증가
     {
         time += Time.deltaTime;
@@ -95,4 +113,17 @@ public class GameManager : MonoBehaviour
         secondCard = null;
     }
 
+    public void StageLevel()
+    {
+        if(stageLevel==0)
+        {
+            isStageLevel0 = true;
+            isStageLevel1 = false;
+        }
+        else if(stageLevel==1)
+        {
+            isStageLevel0 = false;
+            isStageLevel1 = true;
+        }
+    }
 }
