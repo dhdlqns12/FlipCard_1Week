@@ -23,7 +23,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HiddenStagePlayScene.unity
     guid: 4788cb6526e63c541abb81e339ef0057
-  - enabled: 1
-    path: Assets/Scenes/HiddenStageScene.unity
-    guid: 5287d3db5b8eab647a69716aadb8360e
   m_configObjects: {}
