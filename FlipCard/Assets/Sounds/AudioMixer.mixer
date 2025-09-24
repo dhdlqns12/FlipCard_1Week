@@ -31,9 +31,9 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: e8c188d4f59c2764d9f1fc504dc2b7c2
-    name: BGM
+    name: BGMVolume
   - guid: 84592afd5baa83f40b70bd7ac20a34a9
-    name: SFX
+    name: SFXVolume
   m_AudioMixerGroupViews:
   - guids:
     - 4492a1673177ddb45a3a14e2dfcacabf

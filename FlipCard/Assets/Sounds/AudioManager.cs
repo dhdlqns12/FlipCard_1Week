@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     public Slider bgmSlider; //bgm(배경음악) 슬라이더
     public Slider sfxSlider; //sfx(효과음) 슬라이더
 
-    private const float muteVol = -80f; //완전 뮤트 dB값
+    private const float muteVol = -80f; //뮤트 dB값
 
     private void Awake()
     {
@@ -105,44 +105,6 @@ public class AudioManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
-
-    //public void RegisterSlider(Slider bgm, Slider sfx)
-    //{
-    //    bgmSlider = bgm;
-    //    sfxSlider = sfx;
-
-    //    ApplySavedVolumes();
-
-    //    if (bgmSlider != null)
-    //    {
-    //        bgmSlider.onValueChanged.RemoveAllListeners();
-    //        bgmSlider.onValueChanged.AddListener(SetBGMVolume);
-    //    }
-
-    //    if (sfxSlider != null)
-    //    {
-    //        sfxSlider.onValueChanged.RemoveAllListeners();
-    //        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-    //    }
-    //}
-    
-    ////PlayerPrefs에 저장된 볼륨 설정을 슬라이더에 반영
-    //private void ApplySavedVolumes()
-    //{
-    //    if (bgmSlider != null)
-    //    {
-    //        float bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1f);
-    //        bgmSlider.value = bgmVolume;
-    //        SetBGMVolume(bgmVolume);
-    //    }
-
-    //    if (sfxSlider != null)
-    //    {
-    //        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
-    //        sfxSlider.value = sfxVolume;
-    //        SetSFXVolume(sfxVolume);
-    //    }
-    //}
 
     //public void OpenCardSFX()
     //{
