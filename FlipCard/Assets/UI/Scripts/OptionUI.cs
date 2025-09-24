@@ -12,13 +12,13 @@ public class OptionUI : MonoBehaviour
     //클릭 시 옵션창 활성화
     public void OpenOption()
     {
-        audioSource.PlayOneShot(clickSound);
+        AudioManager.instance.BtnClickSound();
         optionPanel.SetActive(!optionPanel.activeSelf);
     }
 
     public void CloseOption()
     {
-        audioSource?.PlayOneShot(clickSound);
+        AudioManager.instance.BtnClickSound();
         optionPanel.SetActive(false);
     }
 }

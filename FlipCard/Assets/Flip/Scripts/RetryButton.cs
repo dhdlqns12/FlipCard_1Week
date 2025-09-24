@@ -7,7 +7,7 @@ public class RetryButton : MonoBehaviour
 {
     public void Retry()
     {
-        SceneManager.LoadScene("StartTitle");
+        SceneManager.LoadScene("StartTitle 1");
     }
 
 }

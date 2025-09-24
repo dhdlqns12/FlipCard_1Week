@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void SelectStage(int stageNum)
-    {       
+    {
         PlayerPrefs.SetInt("SelectStage", stageNum);
         SceneManager.LoadScene("Main_cmp");
     }

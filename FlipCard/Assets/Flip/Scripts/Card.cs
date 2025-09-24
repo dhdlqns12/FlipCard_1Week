@@ -34,6 +34,7 @@ public class Card : MonoBehaviour
     //카드 열었을떄
     public void OpenCard()
     {
+        AudioManager.instance.OpenCardSFX();
         anim.SetBool("isOpen", true);
         front.SetActive(true);
         back.SetActive(false);

@@ -14,11 +14,13 @@ public class AudioManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioMixer audioMixer; //Audio Mixer 참조
-    public AudioClip[] bgmclips; //bgm 클립 배열
     public Slider bgmSlider; //bgm(배경음악) 슬라이더
     public Slider sfxSlider; //sfx(효과음) 슬라이더
 
-    private const float muteVol = -80f; //뮤트 dB값
+    [Header("AudioClip")]
+    public AudioClip[] bgmclips; //bgm 클립 배열
+    public AudioClip clickSound; //클릭 사운드
+    public AudioClip flipSound; //카드 사운드
 
     private void Awake()
     {
@@ -55,6 +57,7 @@ public class AudioManager : MonoBehaviour
     {
         if(bgmSlider != null)
         {
+            bgmSlider.onValueChanged.RemoveAllListeners();
             bgmSlider.onValueChanged.AddListener(SetBGMVolume);
             bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1f);
             SetBGMVolume(bgmSlider.value);
@@ -62,6 +65,7 @@ public class AudioManager : MonoBehaviour
 
         if(sfxSlider != null)
         {
+            sfxSlider.onValueChanged.RemoveAllListeners();
             sfxSlider.onValueChanged.AddListener(SetSFXVolume);
             sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
             SetSFXVolume(sfxSlider.value);
@@ -106,9 +110,24 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
-    //public void OpenCardSFX()
-    //{
-    //    if(sfxAudioSource)
+    //카드 열 때 사운드
+    public void OpenCardSFX()
+    {
+        audioSource?.PlayOneShot(flipSound);
 
-    //}
+    }
+
+    //버튼 클릭 사운드
+    public void BtnClickSound()
+    {
+        audioSource?.PlayOneShot(clickSound);
+    }
+
+    //씬 변경 버튼 사운드
+    public IEnumerator PlaySoundLoad(string sceneName)
+    {
+        audioSource?.PlayOneShot(clickSound);
+        yield return new WaitForSeconds(clickSound.length);
+        SceneManager.LoadScene(sceneName);
+    }
 }

@@ -10,13 +10,6 @@ public class StartGameBtn : MonoBehaviour
 
     public void OnClickStart()
     {
-        StartCoroutine(PlaySoundLoad());
-    }
-
-    private IEnumerator PlaySoundLoad()
-    {
-        audioSource.PlayOneShot(clickSound);
-        yield return new WaitForSeconds(clickSound.length);
-        SceneManager.LoadScene("StageScene");
+        StartCoroutine(AudioManager.instance.PlaySoundLoad("StageScene"));
     }
 }
