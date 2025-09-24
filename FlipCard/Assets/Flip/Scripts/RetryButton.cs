@@ -10,8 +10,17 @@ public class RetryButton : MonoBehaviour
         SceneManager.LoadScene("StartTitle 1");
     }
 
-    public void HiddenButton()
+    public void SelectStage(int stageNum)
     {
-        SceneManager.LoadScene("HiddenStageScene");
+        PlayerPrefs.SetInt("SelectStage", stageNum);
+        if (stageNum >= 0)
+        {
+            SceneManager.LoadScene("Main_cmp");
+        }
+        else
+        {
+            SceneManager.LoadScene("HiddenStagePlayScene");
+        }
+        
     }
 }
