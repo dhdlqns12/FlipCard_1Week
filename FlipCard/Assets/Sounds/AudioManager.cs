@@ -155,12 +155,4 @@ public class AudioManager : MonoBehaviour
 
         }
     }
-
-    //버튼 클릭 시 효과음 나고 행동하기
-    public IEnumerator PlaySoundThenAction(AudioClip sound, System.Action onCompleteAction = null)
-    {
-        audioSourceSfx.PlayOneShot(sound);
-        yield return new WaitForSeconds(sound.length);
-        onCompleteAction?.Invoke();
-    }
 }
