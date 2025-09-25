@@ -18,8 +18,8 @@ public class UIManager : MonoBehaviour
     //public GameObject objectToActivate2;
 
     //[Header("AudioUI")]
-    //public Slider bgmSlider; //bgm(¹è°æÀ½¾Ç) ½½¶óÀÌ´õ
-    //public Slider sfxSlider; //sfx(È¿°úÀ½) ½½¶óÀÌ´õ
+    //public Slider bgmSlider; //bgm(ë°°ê²½ìŒì•…) ìŠ¬ë¼ì´ë”
+    //public Slider sfxSlider; //sfx(íš¨ê³¼ìŒ) ìŠ¬ë¼ì´ë”
 
     public void GameStart()
     {
@@ -72,10 +72,10 @@ public class UIManager : MonoBehaviour
 
     //private void Start()
     //{
-    //    //¾À ·Îµå ÀÌº¥Æ® ±¸µ¶
+    //    //ì”¬ ë¡œë“œ ì´ë²¤íŠ¸ êµ¬ë…
     //    SceneManager.sceneLoaded += OnsceneLoaded;
         
-    //    //ÇöÀç ¾À Ã¼Å©
+    //    //í˜„ì¬ ì”¬ ì²´í¬
     //    CheckCurrentScene();
 
     //    if (bgmSlider != null)
@@ -95,7 +95,7 @@ public class UIManager : MonoBehaviour
 
     //private void OnDestroy()
     //{
-    //    // ÀÌº¥Æ® ±¸µ¶ ÇØÁ¦
+    //    // ì´ë²¤íŠ¸ êµ¬ë… í•´ì œ
     //    SceneManager.sceneLoaded -= OnsceneLoaded;
     //}
 

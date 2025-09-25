@@ -50,7 +50,7 @@ public class Card : MonoBehaviour
     {
         anim.SetBool("isOpen", true); //함수 실행시 애니메이션 실행
         isopen = true; // isopen값이 트루가 된다. 애니메이션 관련 bool값
-
+        AudioManager.instance.OpenCardSFX();
 
         //firstcard가 빈 상황      null==빈 상태
         if (GameManager.Instance.firstCard == null)
@@ -69,7 +69,7 @@ public class Card : MonoBehaviour
 
     public void HiddenOpenCard()
     {
-        //AudioManager.instance.OpenCardSFX(); //히든 스테이지에서 카드 클릭시 여기서 오류가 떠서 새로 함수를 만듦
+        AudioManager.instance.OpenCardSFX();
         anim.SetBool("isOpen", true);
         front.SetActive(true);
         back.SetActive(false);
