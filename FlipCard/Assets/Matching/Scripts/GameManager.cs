@@ -123,16 +123,19 @@ public class GameManager : MonoBehaviour
 
     public void StageLevel()
     {
-        time = GetStageTimeLimit(stageLevel);
+        time = GetStageTimeLimit(stageLevel); // 시간 설정
+        // bool 플래그 설정
         if (stageLevel == 0)
         {
             isStageLevel0 = true;
             isStageLevel1 = false;
+            isHiddenStage = false;
         }
         else if (stageLevel == 1)
         {
             isStageLevel0 = false;
             isStageLevel1 = true;
+            isHiddenStage = false;
         }
         else if (stageLevel == -1)
         {
@@ -146,9 +149,7 @@ public class GameManager : MonoBehaviour
     {
         stageLevel++; //성공 시 스테이지 레벨 증가
         StageManager.Instance.UnlockNextStage(stageLevel);
-        isStageLevel1 = true;
-        time = GetStageTimeLimit(stageLevel);  // 시간도 초기화
-        //bool값 플래그로 조절
+        StageLevel();
     }
 
     float GetStageTimeLimit(int stage)
