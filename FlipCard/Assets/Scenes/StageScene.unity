@@ -709,10 +709,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360b03cd6e8e39c4198872e70b9a5ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToActivate: {fileID: 0}
-  objectToActivate2: {fileID: 0}
-  bgmSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
+  optionWindow: {fileID: 0}
+  buttonClickSfx: {fileID: 8300000, guid: 73f3566254369904fbddbc38387624dd, type: 3}
+  CardFlipSfx: {fileID: 8300000, guid: f6de103bc10ba2f4d980ebfb5c3cd375, type: 3}
 --- !u!1001 &1549945201
 PrefabInstance:
   m_ObjectHideFlags: 0

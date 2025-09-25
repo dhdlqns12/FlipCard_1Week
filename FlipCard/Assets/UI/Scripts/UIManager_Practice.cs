@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BasePanel : MonoBehaviour //Ãß»ó Å¬·¡½º·Î ¸ğµç UIÆĞ³ÎÀÇ º£ÀÌ½º Å¬·¡½º
+public abstract class BasePanel : MonoBehaviour //ì¶”ìƒ í´ë˜ìŠ¤ë¡œ ëª¨ë“  UIíŒ¨ë„ì˜ ë² ì´ìŠ¤ í´ë˜ìŠ¤
 {
     [SerializeField]
     private string panelName;
 
     public string PanelName => panelName;
 
-    public virtual void ShowPanel() //°¡»ó ÇÔ¼ö PanelÀÌ È°¼ºÈ­ µÉ ¶§ È£Ãâ ÇÏÀ§ Å¬·¡½º¿¡ ¿À¹ö¶óÀÌµå ÇÏ¿© ÇÊ¿äÇÑ InitÀÛ¾÷ ¼öÇà
+    public virtual void ShowPanel() //ê°€ìƒ í•¨ìˆ˜ Panelì´ í™œì„±í™” ë  ë•Œ í˜¸ì¶œ í•˜ìœ„ í´ë˜ìŠ¤ì— ì˜¤ë²„ë¼ì´ë“œ í•˜ì—¬ í•„ìš”í•œ Initì‘ì—… ìˆ˜í–‰
     {
 
     }
 
-    public virtual void HidePanel() //°¡»ó ÇÔ¼ö PanelÀÌ ºñ È°¼ºÈ­ µÉ ¶§ È£Ãâ ÇÏÀ§ Å¬·¡½º¿¡ ¿À¹ö¶óÀÌµå ÇÏ¿© ÇÊ¿äÇÑ InitÀÛ¾÷ ¼öÇà
+    public virtual void HidePanel() //ê°€ìƒ í•¨ìˆ˜ Panelì´ ë¹„ í™œì„±í™” ë  ë•Œ í˜¸ì¶œ í•˜ìœ„ í´ë˜ìŠ¤ì— ì˜¤ë²„ë¼ì´ë“œ í•˜ì—¬ í•„ìš”í•œ Initì‘ì—… ìˆ˜í–‰
     {
 
     }
@@ -22,15 +22,15 @@ public abstract class BasePanel : MonoBehaviour //Ãß»ó Å¬·¡½º·Î ¸ğµç UIÆĞ³ÎÀÇ º£
 
 public class UIManager_Practice : MonoBehaviour
 {
-    [Header("ÆĞ³Î ÄÁÅ×ÀÌ³Ê")]
+    [Header("íŒ¨ë„ ì»¨í…Œì´ë„ˆ")]
     public Transform usePanel;
     public Transform unUsePanel;
 
-    [Header("¾Ö´Ï¸ŞÀÌ¼Ç  ¼³Á¤")]
+    [Header("ì• ë‹ˆë©”ì´ì…˜  ì„¤ì •")]
     public float animationDuration = 0.3f;
-    public AnimationCurve animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); //AinmationCurve 0ÃÊ¿¡ 0À¸·Î ½ÃÀÛÇØ¼­ 1ÃÊ¿¡ 1·Î³¡³²
+    public AnimationCurve animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); //AinmationCurve 0ì´ˆì— 0ìœ¼ë¡œ ì‹œì‘í•´ì„œ 1ì´ˆì— 1ë¡œëë‚¨
 
-    [Header("ÆĞ³Î")]
+    [Header("íŒ¨ë„")]
     public List<BasePanel> allPanels = new List<BasePanel>();
 
     private BasePanel currentActivePanel;
@@ -56,7 +56,7 @@ public class UIManager_Practice : MonoBehaviour
     {
         if(!panelDictionary.ContainsKey(panelName))
         {
-            Debug.LogError("ÆĞ³Î ¾øÀ½");
+            Debug.LogError("íŒ¨ë„ ì—†ìŒ");
             return;
         }
 
@@ -73,3 +73,4 @@ public class UIManager_Practice : MonoBehaviour
         return currentActivePanel != null && currentActivePanel.PanelName == panelName;
     }
 }
+
