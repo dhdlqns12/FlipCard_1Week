@@ -73,6 +73,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnsceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        ConnectSlider();
         PlayBGM(scene.buildIndex);
     }
 
@@ -91,7 +92,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetBGMVolume(float volume)
     {
-        if(volume == 0)
+        if (volume == 0)
         {
             audioMixer.SetFloat("BGMVolume", -80f);
         }
@@ -125,10 +126,33 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySfx(AudioClip clip)
     {
-        if(clip!=null&& audioSourceSfx!=null)
+        if (clip != null && audioSourceSfx != null)
         {
             audioSourceSfx.PlayOneShot(clip);
             Debug.Log("버튼 클릭음 재생");
+        }
+    }
+
+    public void ConnectSlider()
+    {
+        GameObject bgmSliderObj = GameObject.Find("BGMSlider");
+        if (bgmSliderObj != null)
+        {
+            bgmSlider = bgmSliderObj.GetComponent<Slider>();
+            bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1f);
+            bgmSlider.onValueChanged.RemoveAllListeners();
+            bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+
+        }
+
+        GameObject sfxSliderObj = GameObject.Find("SFXSlider");
+        if (sfxSliderObj != null)
+        {
+            sfxSlider = sfxSliderObj.GetComponent<Slider>();
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+            sfxSlider.onValueChanged.RemoveAllListeners();
+            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
         }
     }
 
