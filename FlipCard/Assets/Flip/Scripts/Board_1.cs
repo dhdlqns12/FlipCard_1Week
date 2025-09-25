@@ -27,6 +27,34 @@ public class Board_1 : MonoBehaviour
             GameManager.Instance.timeTxt.gameObject.SetActive(false); //다음 스테이지 실행 예열할 동안 시간 지나는 것 막기
             GameManager.Instance.isStageLevel1 = false;
         }
+        else if (GameManager.Instance.isHiddenStage)
+        {
+            HiddenStage();
+            GameManager.Instance.isHiddenStage = false;
+        }
+    }
+    
+    public void HiddenStage()
+    {
+        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4 };
+        arr = arr.OrderBy(x => Random.Range(0f, 4f)).ToArray();
+
+        for (int i = 0; i < 10; i++)
+        {
+            int row = i / 5;
+            int col = i % 5;
+
+            float x = col - 2;
+            float y = (row + 2.5f) * 1.5f;
+
+            Vector3 pos = new Vector3(x, y, 0);
+            GameObject card = Instantiate(cardPrefab, board);
+            card.transform.localPosition = pos;
+            card.name = $"HiddenCard_{i}";
+            card.GetComponent<Card>().HiddenSetting(arr[i]);
+            animator.Play("carddrop",0,0f); //play를 사용해서 이 스크립트를 실행할 때 "carddrop을 실행한다.
+        }
+        GameManager.Instance.cardCount = arr.Length;
     }
 
     public void Stage0()
@@ -49,7 +77,7 @@ public class Board_1 : MonoBehaviour
             card.GetComponent<Card>().Setting(arr[i]);
         }
         GameManager.Instance.cardCount = arr.Length;
-        
+
     }
 
     public void Stage1()
