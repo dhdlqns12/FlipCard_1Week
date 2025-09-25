@@ -17,7 +17,7 @@ public class StageManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
@@ -34,7 +34,8 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 0; i < stageObjects.Length; i++)
         {
-            stageObjects[i].SetActive(i < highestStage);
+            if (stageObjects[i] != null)
+                stageObjects[i].SetActive(i < highestStage);
         }
     }
 

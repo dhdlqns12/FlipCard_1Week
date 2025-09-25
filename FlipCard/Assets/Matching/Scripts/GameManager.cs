@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public bool isStageLevel1 = false;
     public bool isHiddenStage = false;
 
+
     public float time;
 
     private void Awake()
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         }
         Time.timeScale = 1; // 정지 화면 초기화
         score = 0; //현재 스코어 초기화
+
     }
 
     private void Start()
@@ -96,6 +98,7 @@ public class GameManager : MonoBehaviour
                 {
                     sucessPanel.SetActive(true);
                     Time.timeScale = 0;
+
                     return;
                 }
                 else if (stageLevel == -1)
@@ -105,6 +108,7 @@ public class GameManager : MonoBehaviour
                     return;
                 }
                 stageLevel++; //성공 시 스테이지 레벨 증가
+                StageManager.Instance.UnlockNextStage(stageLevel);
                 isStageLevel1 = true;
                 time = 0; // 시간도 초기화
             }
