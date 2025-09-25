@@ -93,7 +93,7 @@ public class Card : MonoBehaviour
     //키드 제거 상황
     public void DestroyCard()
     {
-        Invoke("DestroyCardInvoke", 0.5f);
+        Invoke("DestroyCardInvoke", 1.0f);
     }
 
     void DestroyCardInvoke()
