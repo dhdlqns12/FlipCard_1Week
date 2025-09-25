@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     {
         optionWindow.SetActive(true);
         AudioManager.instance.PlaySfx(buttonClickSfx);
+        AudioManager.instance.ConnectSlider();
     }
 
     public void CloseOption()
@@ -49,6 +50,26 @@ public class UIManager : MonoBehaviour
     public void StageToStart()
     {
         SceneManager.LoadScene("StartTitle 1");
+        AudioManager.instance.PlaySfx(buttonClickSfx);
+    }
+
+    public void QuitGame()
+    {
+        AudioManager.instance.PlaySfx(buttonClickSfx);
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+
+    public void RetryBtn()
+    {
+        SceneManager.LoadScene("StartTitle 1");
+        AudioManager.instance.PlaySfx(buttonClickSfx);
+    }
+
+    public void StageToHiddenStage()
+    {
         AudioManager.instance.PlaySfx(buttonClickSfx);
     }
 
@@ -74,7 +95,7 @@ public class UIManager : MonoBehaviour
     //{
     //    //씬 로드 이벤트 구독
     //    SceneManager.sceneLoaded += OnsceneLoaded;
-        
+
     //    //현재 씬 체크
     //    CheckCurrentScene();
 

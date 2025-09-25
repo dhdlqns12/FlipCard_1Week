@@ -52,7 +52,7 @@ public class Board_1 : MonoBehaviour
             card.transform.localPosition = pos;
             card.name = $"HiddenCard_{i}";
             card.GetComponent<Card>().HiddenSetting(arr[i]);
-            animator.Play("carddrop",0,0f); //play를 사용해서 이 스크립트를 실행할 때 "carddrop을 실행한다.
+            
         }
         GameManager.Instance.cardCount = arr.Length;
     }
@@ -99,7 +99,7 @@ public class Board_1 : MonoBehaviour
             card.transform.localPosition = pos;
             card.name = $"Card_{i}";
             card.GetComponent<Card>().Setting(arr[i]);
-            animator.Play("carddrop",0,0f); //play를 사용해서 이 스크립트를 실행할 때 "carddrop을 실행한다.
+            
         }
         GameManager.Instance.cardCount = arr.Length;
         

@@ -460,6 +460,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: failPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 5260289862661695336, guid: 1ad33f594fb7f994787bff62b0e71d62, type: 3}
+      propertyPath: buttonClickSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 73f3566254369904fbddbc38387624dd, type: 3}
     - target: {fileID: 6922584839286660072, guid: 1ad33f594fb7f994787bff62b0e71d62, type: 3}
       propertyPath: m_Transition
       value: 3

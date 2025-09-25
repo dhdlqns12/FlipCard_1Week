@@ -15,15 +15,15 @@ public class AudioManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSourceBgm;
     public AudioSource audioSourceSfx;
-    public AudioMixer audioMixer; //Audio Mixer ÂüÁ¶
-    public Slider bgmSlider;      //¹è°æÀ½¾Ç(BGM) ½½¶óÀÌ´õ
-    public Slider sfxSlider;      //È¿°úÀ½(SFX) ½½¶óÀÌ´õ
+    public AudioMixer audioMixer; //Audio Mixer ì°¸ì¡°
+    public Slider bgmSlider;      //ë°°ê²½ìŒì•…(BGM) ìŠ¬ë¼ì´ë”
+    public Slider sfxSlider;      //íš¨ê³¼ìŒ(SFX) ìŠ¬ë¼ì´ë”
 
 
     [Header("AudioClip")]
-    public AudioClip[] bgmclips; //bgm Å¬¸³ ¹è¿­
-    public AudioClip clickSound; //Å¬¸¯ »ç¿îµå
-    public AudioClip flipSound; //Ä«µå »ç¿îµå
+    public AudioClip[] bgmclips; //bgm í´ë¦½ ë°°ì—´
+    public AudioClip clickSound; //í´ë¦­ ì‚¬ìš´ë“œ
+    public AudioClip flipSound; //ì¹´ë“œ ì‚¬ìš´ë“œ
 
     private void Awake()
     {
@@ -52,10 +52,10 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        //ÀúÀåµÈ º¼·ı°ªÀ» ºÒ·¯¿À±â, ¾øÀ» °æ¿ì ±âº»°ª 0.75 Àû¿ë
+        //ì €ì¥ëœ ë³¼ë¥¨ê°’ì„ ë¶ˆëŸ¬ì˜¤ê¸°, ì—†ì„ ê²½ìš° ê¸°ë³¸ê°’ 0.75 ì ìš©
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
-        //ÃÊ±âÈ­µÈ ½½¶óÀÌ´õ °ªÀ¸·Î º¼·ı ¼³Á¤
+        //ì´ˆê¸°í™”ëœ ìŠ¬ë¼ì´ë” ê°’ìœ¼ë¡œ ë³¼ë¥¨ ì„¤ì •
 
         SetBGMVolume(bgmSlider.value);
         SetSFXVolume(sfxSlider.value);
@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        //ÃÊ±âÈ­µÈ ½½¶óÀÌ´õ °ªÀ¸·Î º¼·ı ¼³Á¤
+        //ì´ˆê¸°í™”ëœ ìŠ¬ë¼ì´ë” ê°’ìœ¼ë¡œ ë³¼ë¥¨ ì„¤ì •
         if (bgmSlider != null && sfxSlider != null)
         {
             SetBGMVolume(bgmSlider.value);
@@ -73,6 +73,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnsceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        ConnectSlider();
         PlayBGM(scene.buildIndex);
     }
 
@@ -80,6 +81,9 @@ public class AudioManager : MonoBehaviour
     {
         if (bgmclips.Length > 0 && index < bgmclips.Length)
         {
+            if (audioSourceBgm.clip == bgmclips[index] && audioSourceBgm.isPlaying)
+                return;
+
             audioSourceBgm.clip = bgmclips[index];
             audioSourceBgm.loop = true;
             audioSourceBgm.Play();
@@ -88,7 +92,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetBGMVolume(float volume)
     {
-        if(volume == 0)
+        if (volume == 0)
         {
             audioMixer.SetFloat("BGMVolume", -80f);
         }
@@ -114,7 +118,7 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
-    //Ä«µå ¿­ ¶§ »ç¿îµå
+    //ì¹´ë“œ ì—´ ë•Œ ì‚¬ìš´ë“œ
     public void OpenCardSFX()
     {
         audioSourceSfx.PlayOneShot(flipSound);
@@ -122,14 +126,37 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySfx(AudioClip clip)
     {
-        if(clip!=null&& audioSourceSfx!=null)
+        if (clip != null && audioSourceSfx != null)
         {
             audioSourceSfx.PlayOneShot(clip);
-            Debug.Log("¹öÆ° Å¬¸¯À½ Àç»ı");
+            Debug.Log("ë²„íŠ¼ í´ë¦­ìŒ ì¬ìƒ");
         }
     }
 
-    //¹öÆ° Å¬¸¯ ½Ã È¿°úÀ½ ³ª°í Çàµ¿ÇÏ±â
+    public void ConnectSlider()
+    {
+        GameObject bgmSliderObj = GameObject.Find("BGMSlider");
+        if (bgmSliderObj != null)
+        {
+            bgmSlider = bgmSliderObj.GetComponent<Slider>();
+            bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1f);
+            bgmSlider.onValueChanged.RemoveAllListeners();
+            bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+
+        }
+
+        GameObject sfxSliderObj = GameObject.Find("SFXSlider");
+        if (sfxSliderObj != null)
+        {
+            sfxSlider = sfxSliderObj.GetComponent<Slider>();
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+            sfxSlider.onValueChanged.RemoveAllListeners();
+            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
+        }
+    }
+
+    //ë²„íŠ¼ í´ë¦­ ì‹œ íš¨ê³¼ìŒ ë‚˜ê³  í–‰ë™í•˜ê¸°
     public IEnumerator PlaySoundThenAction(AudioClip sound, System.Action onCompleteAction = null)
     {
         audioSourceSfx.PlayOneShot(sound);

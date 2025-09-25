@@ -26,6 +26,7 @@ public class Card : MonoBehaviour
     {
         if (isopen && transform.eulerAngles.y >= 90.0f) //isopen이 트루이고 트랜지션에 y회전값이 90도 이거나 이상일 때
         {
+            Debug.Log("start");
             front.SetActive(true); //front setactive 실행하고
             back.SetActive(false); //back을 없앤ek
         }
@@ -71,8 +72,9 @@ public class Card : MonoBehaviour
     {
         AudioManager.instance.OpenCardSFX();
         anim.SetBool("isOpen", true);
-        front.SetActive(true);
-        back.SetActive(false);
+        isopen = true;
+        //front.SetActive(true);
+        //back.SetActive(false);
 
 
         //firstcard가 빈 상황      null==빈 상태
