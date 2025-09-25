@@ -23,6 +23,7 @@ public class Board_1 : MonoBehaviour
         }
         else if (GameManager.Instance.isStageLevel1)
         {
+            Stage1();
             Invoke("Stage1", 1f);
             GameManager.Instance.timeTxt.gameObject.SetActive(false); //다음 스테이지 실행 예열할 동안 시간 지나는 것 막기
             GameManager.Instance.isStageLevel1 = false;
