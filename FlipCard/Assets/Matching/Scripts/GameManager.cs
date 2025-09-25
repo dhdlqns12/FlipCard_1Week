@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public int score = 0; //스코어 담을 변수
     public Text scoreTxt; //스코어 표기
 
+    [Header("스테이지별 시간 설정")]
+    public float[] stageTimeLimits;
+
     public int stageLevel = 0; //스테이지 레벨
     public int cardCount = 0; //남아 있는 카드를 카운트할 변수
     public bool isStageLevel0 = true;
@@ -51,11 +54,11 @@ public class GameManager : MonoBehaviour
 
     void Update() // 시간 증가
     {
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
         if (stageLevel <= 0)
         {
-            if (time >= 30) //30초를 넘을 시 게임 종료
+            if (time <= 0) //30초를 넘을 시 게임 종료
             {
                 failPanel.SetActive(true);
                 stageLevel = 0; //실패 시 스테이지 레벨 0으로 초기화
@@ -66,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
         else if (stageLevel >= 1)
         {
-            if (time >= 60)
+            if (time <= 0)
             {
                 failPanel.SetActive(true);
                 stageLevel = 0; //실패 시 스테이지 레벨 0으로 초기화
@@ -102,6 +105,10 @@ public class GameManager : MonoBehaviour
                     Time.timeScale = 0;
                     return;
                 }
+                else if(stageLevel==0)
+                {
+                    Invoke("NextStage", 1f);
+                }
             }
         }
         else // 틀리면 뒤집기
@@ -116,6 +123,7 @@ public class GameManager : MonoBehaviour
 
     public void StageLevel()
     {
+        time = GetStageTimeLimit(stageLevel);
         if (stageLevel == 0)
         {
             isStageLevel0 = true;
@@ -134,11 +142,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void nextStage()
+    public void NextStage()
     {
         stageLevel++; //성공 시 스테이지 레벨 증가
+        StageManager.Instance.UnlockNextStage(stageLevel);
         isStageLevel1 = true;
-        time = 0; // 시간도 초기화
+        time = GetStageTimeLimit(stageLevel);  // 시간도 초기화
         //bool값 플래그로 조절
+    }
+
+    float GetStageTimeLimit(int stage)
+    {
+        if (stage == -1)
+            return 30f;
+
+        if (stage >= 0 && stage < stageTimeLimits.Length)
+            return stageTimeLimits[stage];
+
+        return 60f;
     }
 }

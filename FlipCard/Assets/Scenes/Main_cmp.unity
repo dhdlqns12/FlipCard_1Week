@@ -169,12 +169,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
-  teamMembers: []
   sucessPanel: {fileID: 737522426}
   failPanel: {fileID: 1753499308}
   timeTxt: {fileID: 1292700666}
   score: 0
   scoreTxt: {fileID: 1969476357}
+  stageTimeLimits:
+  - 30
+  - 60
   stageLevel: 0
   cardCount: 0
   isStageLevel0: 1

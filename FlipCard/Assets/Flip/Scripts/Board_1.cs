@@ -19,7 +19,6 @@ public class Board_1 : MonoBehaviour
         }
         else if (GameManager.Instance.isStageLevel1)
         {
-            Stage1();
             Invoke("Stage1", 1f);
             GameManager.Instance.timeTxt.gameObject.SetActive(false); //다음 스테이지 실행 예열할 동안 시간 지나는 것 막기
             GameManager.Instance.isStageLevel1 = false;
@@ -93,10 +92,10 @@ public class Board_1 : MonoBehaviour
 
             Vector3 pos = new Vector3(x, y, 0);
             GameObject card = Instantiate(cardPrefab, board);
+            animator.Play("carddrop", 0, 0f);
             card.transform.localPosition = pos;
             card.name = $"Card_{i}";
-            card.GetComponent<Card>().Setting(arr[i]);
-            
+            card.GetComponent<Card>().Setting(arr[i]);            
         }
 
         GameManager.Instance.cardCount = arr.Length;
