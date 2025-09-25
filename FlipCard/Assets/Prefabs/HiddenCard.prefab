@@ -449,7 +449,7 @@ MonoBehaviour:
   idx: 0
   front: {fileID: 4977466874266574553}
   back: {fileID: 8047643839344451956}
-  anim: {fileID: 1986695817614727935, guid: 6eb8280308b249846af659f8d971f3a7, type: 3}
+  anim: {fileID: 5792432193259674847}
   frontImages: {fileID: 5637317863456690610}
 --- !u!95 &5792432193259674847
 Animator:
