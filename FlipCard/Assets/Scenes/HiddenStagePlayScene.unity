@@ -1466,6 +1466,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4017490375223626581, guid: 1ad33f594fb7f994787bff62b0e71d62, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f5830ccbb381ee547acc7897e83c122a, type: 3}
+    - target: {fileID: 4142118537794201570, guid: 1ad33f594fb7f994787bff62b0e71d62, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5260289862661695336, guid: 1ad33f594fb7f994787bff62b0e71d62, type: 3}
       propertyPath: buttonClickSfx
       value: 
