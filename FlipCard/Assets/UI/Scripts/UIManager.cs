@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
     //{
     //    //씬 로드 이벤트 구독
     //    SceneManager.sceneLoaded += OnsceneLoaded;
-        
+
     //    //현재 씬 체크
     //    CheckCurrentScene();
 
