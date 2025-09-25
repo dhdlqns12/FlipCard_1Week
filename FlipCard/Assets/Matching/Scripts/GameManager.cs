@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     public Card firstCard; //첫번째로 뒤집은 카드
     public Card secondCard; //두번째로 뒤집은 카드
 
-    [Header("팀원 정보")]
-    public List<TeamMember> teamMembers = new List<TeamMember>(); // 팀원 정보
-
     [Header("UI정보")]
     public GameObject sucessPanel; //성공 시 보여줄 패널
     public GameObject failPanel; //실패 시 보여줄 패널
@@ -105,9 +102,6 @@ public class GameManager : MonoBehaviour
                     Time.timeScale = 0;
                     return;
                 }
-                stageLevel++; //성공 시 스테이지 레벨 증가
-                isStageLevel1 = true;
-                time = 0; // 시간도 초기화
             }
         }
         else // 틀리면 뒤집기
@@ -138,5 +132,13 @@ public class GameManager : MonoBehaviour
             isStageLevel1 = false;
             isHiddenStage = true;
         }
+    }
+
+    public void nextStage()
+    {
+        stageLevel++; //성공 시 스테이지 레벨 증가
+        isStageLevel1 = true;
+        time = 0; // 시간도 초기화
+        //bool값 플래그로 조절
     }
 }

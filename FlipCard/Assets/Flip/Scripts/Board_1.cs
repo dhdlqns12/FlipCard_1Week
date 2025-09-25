@@ -9,10 +9,6 @@ public class Board_1 : MonoBehaviour
     public GameObject cardPrefab;
     public Transform board;
     public Animator animator;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -102,6 +98,7 @@ public class Board_1 : MonoBehaviour
             card.GetComponent<Card>().Setting(arr[i]);
             
         }
+
         GameManager.Instance.cardCount = arr.Length;
         
     }
